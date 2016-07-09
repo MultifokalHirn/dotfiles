@@ -1,0 +1,11 @@
+%  vertical split
+"  horizontal split
+x  kill pane
+o  swap panes
+
+c  create window
+&  kill window
+n  next window
+p  previous window
+
+ls  list sessions
