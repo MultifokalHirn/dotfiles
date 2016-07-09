@@ -1,0 +1,46 @@
+alias dl="curl -O"                                  # download file
+alias gz="tar -zxvf"                                # open .tar.gz file
+alias tmh="cat /Users/lennard/.myTmuxCheatSheet"    # show tmux commands
+alias aliases="cat /Users/lennard/.aliases"         # show aliases
+alias l.="ls -d .*"                                 # ls hidden files
+alias update="brew update; brew upgrade"            # update brew apps/libs
+alias histg="history | grep"                        # search keyword in history
+alias top="htop"                                    # have top be beautiful
+alias e="vim"                                       # edit
+alias tim="sh /Users/lennard/.myTimeScript.sh"         # show time with figlet
+
+alias gotr="cd ~/go/src/github.com/HPI-BP2015H/go-travis"
+alias multi="cd ~/go/src/github.com/MultifokalHirn"
+alias hopl="cd /Volumes/Apollon/Documents/Studium/SS\ 16/HOPL"
+alias ba="/Volumes/Apollon/Documents/Studium/SS\ 16/Bachelorarbeit/bachelor-arbeit.sh"
+
+
+alias lisp=lispn
+alias lispl=lispl
+lispn() {
+   rlwrap sbcl $1 $2
+}
+
+lispl() {
+   rlwrap sbcl --load $1
+}
+
+
+alias ta="tmux attach"
+alias td="tmux detach"
+
+gcmf() {
+  git commit -m "$1"
+}
+
+
+alias gst="git status -sb"
+alias ga="git add"
+alias gaa="git add -A"
+alias gcm=gcmf
+alias gpl="git pull"
+alias gps="git push"
+
+alias ee="exit"
+alias qq="exit"
+alias c="clear"
