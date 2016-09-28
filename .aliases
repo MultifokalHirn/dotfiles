@@ -9,7 +9,7 @@ alias top="htop"                                    # have top be beautiful
 alias e="vim"                                       # edit
 alias tim="sh ~/.myTimeScript.sh"                   # show time with figlet
 
-alias gotr="cd ~/go/src/github.com/HPI-BP2015H/go-travis"
+alias phi="cd ~/GitHub/philosophie"
 alias multi="cd ~/go/src/github.com/MultifokalHirn"
 alias hopl="cd /Volumes/Apollon/Documents/Studium/SS\ 16/HOPL"
 alias ba="/Volumes/Apollon/Documents/Studium/SS\ 16/Bachelorarbeit/bachelor-arbeit.sh"
