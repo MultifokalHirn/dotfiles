@@ -1,44 +1,39 @@
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
+
+fpath=(/usr/local/share/zsh-completions $fpath)
+
+ZSH_DISABLE_COMPFIX="true"
+
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/lennard/.oh-my-zsh
+export ZSH="/Users/lw/.oh-my-zsh"
 
-#add aliases
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_45.jdk/Contents/Home
 
-source $HOME/.aliases
-source $HOME/.profile
+export PATH=/usr/local/sbin:$PATH
+PATH="/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH"
+export PATH=$PATH:/Users/lw/Library/Python/3.7/bin
+export PATH=$PATH:/Users/lw/Library/Python/2.7/bin
 
-#makes word deletion possible
-#bind '"\M-d": backward-kill-word'
 
 
-export PATH=$PATH:$GOPATH/bin
-export NODE_PATH='/usr/local/lib/node_modules'
-export EDITOR="vim"
-bindkey -v 
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time oh-my-zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+ZSH_THEME="spaceship" #robbyrussell"
 
-#rbenv
-
-export PATH=$HOME/.rbenv/bin:$PATH
-eval "$(rbenv init -)"
-
-# vi style incremental search
-bindkey '^R' history-incremental-search-backward
-bindkey '^S' history-incremental-search-forward
-bindkey '^P' history-search-backward
-bindkey '^N' history-search-forward  
-
-setopt AUTO_CD
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-ZSH_THEME="agnoster"
-DEFAULT_USER="lennard"
+# Set list of themes to pick from when loading at random
+# Setting this variable when ZSH_THEME=random will cause zsh to load
+# a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
+# If set to an empty array, this variable will have no effect.
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
-# Uncomment the following line to use hyphen-insensitive completion. Case
-# sensitive completion must be off. _ and - will be interchangeable.
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
 # HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
@@ -66,24 +61,29 @@ DEFAULT_USER="lennard"
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# You can set one of the optional three formats:
+# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# or set a custom format using the strftime function format specifications,
+# see 'man strftime' for details.
 # HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Which plugins would you like to load?
+# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git ruby sublime)
-
-# User configuration
-
-export PATH="$HOME/.rbenv/shims:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/Library/TeX/texbin"
-# export MANPATH="/usr/local/man:$MANPATH"
+plugins=(
+  git
+)
 
 source $ZSH/oh-my-zsh.sh
+source $HOME/.aliases
+# User configuration
+
+# export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -99,7 +99,7 @@ source $ZSH/oh-my-zsh.sh
 # export ARCHFLAGS="-arch x86_64"
 
 # ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
+# export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -107,30 +107,48 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-# alias zshconfig="mate ~/.zshrc"
- alias vim="/Applications/MacVim.app/Contents/MacOS/Vim"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-#ls ~/.rbenv/versions/)" -- "$word") )
+alias zshconfig="sudo code ~/.zshrc"
+alias ohmyzsh="code ~/.oh-my-zsh"
 
-#rbenv
-if [ -d "$HOME/.rbenv/bin" ]; then
-    source /usr/local/Cellar/rbenv/1.0.0/completions/rbenv.zsh
-    rbenv rehash
-    export PATH=$HOME/.ruby-build/bin:$PATH
-fi
-
-
-#use definition (rbenv)
-function use () {
-	if [ $# -eq 0 ]; then
-		echo $RBENV_VERSION
-	else
-		export RBENV_VERSION=$1
-	fi
+checkout() {
+  git branch | cut -c 3- | selecta | xargs git checkout
 }
-export PATH="/usr/local/sbin:$PATH"
+# alias c="checkout"
 
-# added by travis gem
-[ -f /Users/lennard/.travis/travis.sh ] && source /Users/lennard/.travis/travis.sh
 
-export GOPATH=$HOME/go PATH=$PATH:$HOME/go/bin
+change-project() {
+    cd $(find ~/Documents/GitHub -maxdepth 1 -type d | selecta)
+}
+
+show-file() {
+    cat $(ls | selecta)
+}
+
+
+alias p="change-project"
+alias s="show-file"
+
+alias findpid="ps axww -o pid,user,%cpu,%mem,start,time,command | selecta | sed 's/^ *//' | cut -f1 -d' '"
+
+alias pid=findpid
+
+auto-retry()
+{
+    false
+    while [ $? -ne 0 ]; do
+        "$@" || (sleep 1;false)
+    done
+}
+
+chpwd() ls -a
+
+alias la="ls -lah"
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
+# test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh" || true
+
+export PATH="/usr/local/opt/ncurses/bin:$PATH"
+
+eval "$(rbenv init -)"
+export PATH="/usr/local/opt/ruby/bin:$PATH"
