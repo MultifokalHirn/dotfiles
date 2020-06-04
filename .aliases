@@ -7,13 +7,6 @@ alias update="brew update; brew upgrade"            # update brew apps/libs
 alias histg="history | grep"                        # search keyword in history
 alias top="htop"                                    # have top be beautiful
 alias e="vim"                                       # edit
-alias tim="sh ~/.myTimeScript.sh"                   # show time with figlet
-
-alias phi="cd ~/GitHub/philosophie"
-alias multi="cd ~/go/src/github.com/MultifokalHirn"
-alias hopl="cd /Volumes/Apollon/Documents/Studium/SS\ 16/HOPL"
-alias ba="/Volumes/Apollon/Documents/Studium/SS\ 16/Bachelorarbeit/bachelor-arbeit.sh"
-
 
 alias lisp=lispn
 alias lispl=lispl
@@ -29,18 +22,12 @@ lispl() {
 alias ta="tmux attach"
 alias td="tmux detach"
 
-gcmf() {
-  git commit -m "$1"
-}
-
+alias sshconfig="code ~/.ssh/config"
+alias hosts="code /etc/hosts"
 
 alias gst="git status -sb"
 alias ga="git add"
 alias gaa="git add -A"
-alias gcm=gcmf
-alias gpl="git pull"
-alias gps="git push"
 
 alias ee="exit"
 alias qq="exit"
-alias c="clear"
