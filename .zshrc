@@ -1,9 +1,9 @@
-timer=$(($(gdate +%s%N) / 1000000))
+# timer=$(($(gdate +%s%N) / 1000000))
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 # zmodload zsh/zprof
-# fpath=(/usr/local/share/zsh-completions $fpath)
-# fpath+=~/.zfunc
+fpath=(/usr/local/share/zsh-completions $fpath)
+fpath+=~/.zfunc
 ZSH_DISABLE_COMPFIX="true"
 
 # Path to your oh-my-zsh installation.
@@ -14,6 +14,24 @@ export ZSH="/Users/lw/.oh-my-zsh"
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="spaceship" #robbyrussell"
+
+SPACESHIP_KUBECONTEXT_SHOW=false # nondefault
+SPACESHIP_JOBS_SHOW=false        # nondefault
+SPACESHIP_EXIT_CODE_SHOW=true    # nondefault
+SPACESHIP_BATTERY_SHOW=false     # nondefault
+SPACESHIP_VI_MODE_SHOW=false     # nondefault
+SPACESHIP_EMBER_SHOW=false       # nondefault
+SPACESHIP_DOTNET_SHOW=false      # nondefault
+SPACESHIP_CONDA_SHOW=false       # nondefault
+SPACESHIP_AWS_SHOW=false         # nondefault
+SPACESHIP_JULIA_SHOW=false       # nondefault
+SPACESHIP_RUST_SHOW=false        # nondefault
+SPACESHIP_SWIFT_SHOW_LOCAL=false # nondefault
+SPACESHIP_GOLANG_SHOW=false      # nondefault
+SPACESHIP_PHP_SHOW=false         # nondefault
+SPACESHIP_ELIXIR_SHOW=false      # nondefault
+SPACESHIP_HG_SHOW=false          # nondefault
+SPACESHIP_TIME_SHOW=true         # nondefault
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -58,11 +76,10 @@ DISABLE_AUTO_UPDATE="false"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(
-  git
-)
-
+plugins=(git zsh-completions zsh-syntax-highlighting zsh-autosuggestions zsh-interactive-cd)
+autoload -U compinit && compinit
 source $ZSH/oh-my-zsh.sh
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # User configuration
 
@@ -180,3 +197,5 @@ alias update="brew update; brew upgrade" # update brew apps/libs
 #else
 #	compinit -C;
 #fi;
+
+
